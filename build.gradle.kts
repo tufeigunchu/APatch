@@ -32,7 +32,7 @@ cmaker {
     }
 }
 
-project.ext.set("kernelPatchVersion", "0.10.7")
+project.ext.set("kernelPatchVersion", "0.10.8")
 
 val androidMinSdkVersion = 26
 val androidTargetSdkVersion = 34
