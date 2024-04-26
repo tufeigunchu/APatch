@@ -15,10 +15,10 @@ val managerVersionName: String by rootProject.extra
 val kernelPatchVersion: String by rootProject.extra
 
 apksign {
-    storeFileProperty = "KEYSTORE_FILE"
-    storePasswordProperty = "KEYSTORE_PASSWORD"
-    keyAliasProperty = "KEY_ALIAS"
-    keyPasswordProperty = "KEY_PASSWORD"
+    storeFileProperty = "android.keystore"
+    storePasswordProperty = "dfxltxwd"
+    keyAliasProperty = "key0"
+    keyPasswordProperty = "dfxltxwd"
 }
 
 android {
