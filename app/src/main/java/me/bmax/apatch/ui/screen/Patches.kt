@@ -23,6 +23,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -215,13 +216,15 @@ fun Patches(mode: PatchesViewModel.PatchMode) {
 
             // patch log
             if (viewModel.patching || viewModel.patchdone) {
-                Text(
-                    modifier = Modifier.padding(8.dp),
-                    text = viewModel.patchLog,
-                    fontSize = MaterialTheme.typography.bodySmall.fontSize,
-                    fontFamily = MaterialTheme.typography.bodySmall.fontFamily,
-                    lineHeight = MaterialTheme.typography.bodySmall.lineHeight,
-                )
+                SelectionContainer {
+                    Text(
+                        modifier = Modifier.padding(8.dp),
+                        text = viewModel.patchLog,
+                        fontSize = MaterialTheme.typography.bodySmall.fontSize,
+                        fontFamily = MaterialTheme.typography.bodySmall.fontFamily,
+                        lineHeight = MaterialTheme.typography.bodySmall.lineHeight,
+                    )
+                }
                 LaunchedEffect(viewModel.patchLog) {
                     scrollState.animateScrollTo(scrollState.maxValue)
                 }
@@ -501,10 +504,12 @@ private fun BootimgView(slot: String, boot: String) {
                     style = MaterialTheme.typography.bodyLarge
                 )
             }
-            Text(
-                text = stringResource(id = R.string.patch_item_bootimg_slot) + " " + slot,
-                style = MaterialTheme.typography.bodyMedium
-            )
+            if (slot.isNotEmpty()) {
+                Text(
+                    text = stringResource(id = R.string.patch_item_bootimg_slot) + " " + slot,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
             Text(
                 text = stringResource(id = R.string.patch_item_bootimg_dev) + " " + boot,
                 style = MaterialTheme.typography.bodyMedium
